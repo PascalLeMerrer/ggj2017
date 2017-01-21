@@ -1,30 +1,36 @@
 const MIDDLE_Y = 450
+const victory_condition = 100
 
 var ball_factory = preload("ball/BallFactory.gd").new()
 
 var left_paddle
 var right_paddle
 var paddle_counter = 0
+var game_over = false
 
 var scores = [0, 0]
 var hud
 
 func _ready():
 	left_paddle = create_paddle("LeftPaddle/KinematicBody2D", 'left', Vector2(100, MIDDLE_Y))
-
 	right_paddle = create_paddle("RightPaddle/KinematicBody2D", 'right', Vector2(1340, MIDDLE_Y))
+	
 	print("left_paddle=", left_paddle," right_paddle=", right_paddle)
+	
 	hud = get_node('Hud')
 	ball_factory.create_ball(right_paddle, self)
-
+	
 	init_goals()
 	init_scores()
 	
 	set_process(true)
-	
-		
+
 func _process(delta):
 	if(Input.is_action_pressed("ui_cancel")):
+		reset_game()
+	
+	if(game_over and Input.is_action_pressed("ui_accept")):
+		game_over = false
 		reset_game()
 
 func create_paddle(node_path, position, origin):
@@ -43,16 +49,20 @@ func on_goal_hit(ball, goal_position):
 
 	ball_factory.destroy_ball(ball)
 
-	if(goal_position == 'left'):
-		increase_score(1, 10)
+	if goal_position == 'left' and increase_score(1, 10):
 		ball_factory.create_ball(left_paddle, self)
-	elif(goal_position == 'right'):
-		increase_score(0, 10)
+	elif goal_position == 'right' and increase_score(0, 10):
 		ball_factory.create_ball(right_paddle, self)
-		
+	else:
+		ball_factory.destroy_all_balls()
+		hud.victory(goal_position)
+		game_over = true
+
 func increase_score(player, points):
 	scores[player] += points
 	hud.set_score(player, scores[player])
+	
+	return scores[player] < victory_condition
 	
 func init_goals():
 	get_node("LeftGoal/StaticBody2D").position = 'left'
@@ -63,3 +73,4 @@ func reset_game():
 	right_paddle.go_to_origin()
 	ball_factory.destroy_all_balls()
 	ball_factory.create_ball(left_paddle, self)
+	hud.reset_hud()
