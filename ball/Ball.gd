@@ -19,5 +19,5 @@ func _on_RigidBody2D_body_enter( body ):
 		
 func process_collision_with_goal(collider, goal):
 	if (collider == goal):
-		game_root.on_goal_hit(goal.position)
-		get_parent().destroy()
+		print(goal.position + " hit") 
+		game_root.on_goal_hit(self, goal.position)
