@@ -53,8 +53,7 @@ func _on_RigidBody2D_body_enter( body ):
 		process_collision_with_goal(body, right_goal)
 	elif (body extends KinematicBody2D):
 		last_paddle_hit = body.get_parent().get_name()
-#		print(last_paddle_hit)
-#		game_root.get_node("Hud").set_debug_text(last_paddle_hit)
+		get_node("Sprite").set_modulate(body.current_color)
 		
 func process_collision_with_goal(collider, goal):
 	if (collider == goal):
