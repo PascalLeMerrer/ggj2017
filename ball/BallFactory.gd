@@ -1,15 +1,17 @@
 var paddles = []
 
 const Ball = preload("res://ball/Ball.tscn")
+const MAX_BALLS = 10
 var ball_count = 0
 
 var balls = []
-
 
 func register_paddle(paddle):
 	paddles.append(paddle)
 	
 func create_ball(paddle, arena):
+	if(balls.size() >= MAX_BALLS):
+		return null
 	var ball = Ball.instance()
 	ball.set_name("Ball" + str(ball_count))
 	arena.add_child(ball)
