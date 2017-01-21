@@ -11,9 +11,11 @@ var hud
 
 func _ready():
 	left_paddle = create_paddle("LeftPaddle/KinematicBody2D", 'left', Vector2(100, MIDDLE_Y))
-	right_paddle = create_paddle("RightPaddle/KinematicBody2D", 'right', Vector2(1340, MIDDLE_Y  + 150))
+
+	right_paddle = create_paddle("RightPaddle/KinematicBody2D", 'right', Vector2(1340, MIDDLE_Y))
+	print("left_paddle=", left_paddle," right_paddle=", right_paddle)
 	hud = get_node('Hud')
-	ball_factory.create_ball(left_paddle, self)
+	ball_factory.create_ball(right_paddle, self)
 
 	init_goals()
 	init_scores()
@@ -35,7 +37,7 @@ func create_paddle(node_path, position, origin):
 	return paddle
 
 func init_scores():
-	get_node("Hud").set_score(1, 999)
+	get_node("Hud").set_score(1, 000)
 	
 func on_goal_hit(ball, goal_position):
 
