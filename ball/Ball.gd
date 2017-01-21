@@ -11,6 +11,10 @@ func _ready():
 	game_root = get_node("/root/Game")
 	left_goal = game_root.get_node("LeftGoal/StaticBody2D")
 	right_goal = game_root.get_node("RightGoal/StaticBody2D")
+	set_fixed_process(true)
+#	
+func _fixed_process(delta):
+	set_linear_damp(0.999) 
 	
 func _on_RigidBody2D_body_enter( body ):
 	if(body extends StaticBody2D):
