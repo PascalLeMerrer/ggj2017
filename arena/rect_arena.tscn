@@ -1,0 +1,165 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://border/corner_border.tscn" type="PackedScene" id=1]
+[ext_resource path="res://border/border.tscn" type="PackedScene" id=2]
+
+[node name="Node" type="Node2D"]
+
+[node name="left_border" type="Node2D" parent="."]
+
+editor/display_folded = true
+
+[node name="top_corner" parent="left_border" instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 79.3, 35 )
+
+[node name="top_goal_corner" parent="left_border" instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 35, 265 )
+transform/rot = 180.0
+
+[node name="bottom_goal_corner" parent="left_border" instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 35, 635 )
+transform/rot = -90.0
+
+[node name="bottom_corner" parent="left_border" instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 79.2883, 864.341 )
+transform/rot = 90.0
+
+[node name="top_border" parent="left_border" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 35, 149.5 )
+transform/rot = -180.0
+
+[node name="bottom_border" parent="left_border" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 35, 749.086 )
+transform/rot = -180.0
+
+[node name="right_border" type="Node2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 1423.02, 385.377 )
+transform/rot = -180.0
+
+[node name="top_corner" parent="right_border" instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 62.3384, -479.129 )
+
+[node name="top_goal_corner" parent="right_border" instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 18.0385, -249.129 )
+transform/rot = 180.0
+
+[node name="bottom_goal_corner" parent="right_border" instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 18.0385, 120.871 )
+transform/rot = -90.0
+
+[node name="bottom_corner" parent="right_border" instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 62.3268, 350.212 )
+transform/rot = 90.0
+
+[node name="top_border" parent="right_border" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 18.0384, -364.629 )
+transform/rot = -180.0
+
+[node name="top_border1" parent="right_border" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 18.0384, 234.957 )
+transform/rot = -180.0
+
+[node name="top_border" type="Node2D" parent="."]
+
+editor/display_folded = true
+
+[node name="border1" parent="top_border" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 194, 35 )
+transform/rot = -90.0
+
+[node name="border2" parent="top_border" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 354, 35 )
+transform/rot = -90.0
+
+[node name="border3" parent="top_border" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 514, 35 )
+transform/rot = -90.0
+
+[node name="border4" parent="top_border" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 674, 35 )
+transform/rot = -90.0
+
+[node name="border5" parent="top_border" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 834, 35 )
+transform/rot = -90.0
+
+[node name="border6" parent="top_border" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 994, 35 )
+transform/rot = -90.0
+
+[node name="border7" parent="top_border" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 1154, 35 )
+transform/rot = -90.0
+
+[node name="border8" parent="top_border" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 1246, 35 )
+transform/rot = -90.0
+
+[node name="bottom_border" type="Node2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 0, 873.5 )
+
+[node name="border1" parent="bottom_border" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 194, 35 )
+transform/rot = -90.0
+
+[node name="border2" parent="bottom_border" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 354, 35 )
+transform/rot = -90.0
+
+[node name="border3" parent="bottom_border" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 514, 35 )
+transform/rot = -90.0
+
+[node name="border4" parent="bottom_border" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 674, 35 )
+transform/rot = -90.0
+
+[node name="border5" parent="bottom_border" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 834, 35 )
+transform/rot = -90.0
+
+[node name="border6" parent="bottom_border" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 994, 35 )
+transform/rot = -90.0
+
+[node name="border7" parent="bottom_border" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 1154, 35 )
+transform/rot = -90.0
+
+[node name="border8" parent="bottom_border" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 1246, 35 )
+transform/rot = -90.0
+
+
