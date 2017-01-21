@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://border/corner_border.tscn" type="PackedScene" id=1]
+[ext_resource path="res://border/line_border.tscn" type="PackedScene" id=2]
+
+[node name="StaticBody2D" type="StaticBody2D"]
+
+transform/pos = Vector2( 45.7758, 21.8928 )
+input/pickable = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="Corner" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 44, 35 )
+
+[node name="GoalCorner" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( -9.17939e-06, 265 )
+transform/rot = 180.0
+
+[node name="GoalLine" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 44.3783, 150.404 )
+
+[node name="BorderLine1" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 158.462, 35.1594 )
+transform/rot = -90.0
+
+[node name="BorderLine2" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 318.462, 35.1594 )
+transform/rot = -90.0
+
+

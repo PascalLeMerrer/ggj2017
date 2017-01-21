@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 10.1969, 27.3711 )
+extents = Vector2( 10.1969, 28.0638 )
 
 [node name="Node" type="Node2D"]
 

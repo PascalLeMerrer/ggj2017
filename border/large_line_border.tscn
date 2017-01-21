@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://border/line_border.tscn" type="PackedScene" id=1]
+
+[node name="StaticBody2D" type="Node2D"]
+
+transform/pos = Vector2( 36.6115, 33.8995 )
+transform/scale = Vector2( 1, 1 )
+
+[node name="Left" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( -16.8338, 17.2665 )
+transform/rot = -90.0
+
+[node name="FullRight" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 302.843, 17.3621 )
+transform/rot = -90.0
+
+[node name="Right" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 142.991, 17.2933 )
+transform/rot = -90.0
+
+[node name="FullLeft" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( -176.685, 17.1977 )
+transform/rot = -90.0
+
+
