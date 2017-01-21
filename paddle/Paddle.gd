@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+const Color_Generator = preload("res://ColorGenerator.gd")
+
 const MAX_DISTANCE = 256
 const DEADZONE = 0.4
 const SPEED = 1500
@@ -17,6 +19,7 @@ var x_offset
 
 func _ready():
 	set_fixed_process(true)
+	get_node("Sprite").set_modulate(Color_Generator.get_random_color())
 
 func set_origin(position):
 	origin_pos = position
