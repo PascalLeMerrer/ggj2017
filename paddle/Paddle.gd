@@ -1,4 +1,4 @@
-extends Node
+extends KinematicBody2D
 
 const MAX_DISTANCE = 256
 const DEADZONE = 0.4
