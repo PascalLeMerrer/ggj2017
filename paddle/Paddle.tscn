@@ -1,15 +1,12 @@
 [gd_scene load_steps=4 format=1]
 
-[ext_resource path="res://paddle/paddle/paddle.png" type="Texture" id=1]
+[ext_resource path="res://paddle/Paddle.gd" type="Script" id=1]
+[ext_resource path="res://paddle/paddle/paddle.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 37.0
-
-[sub_resource type="GDScript" id=2]
-
-script/source = "extends Node\n\nconst MAX_DISTANCE = 256\nconst DEADZONE = 0.4\nconst SPEED = 500\nconst RECALL_SPEED = 150\n\nconst LEFT = \'left\'\nconst RIGHT = \'right\'\nconst RADIUS = 36\n\nvar origin_pos\nvar pad_number\nvar pad_position # should be \'left\' or \'right\'\nvar is_vibrating = false\nvar x_offset\n\nfunc _ready():\n\tset_fixed_process(true)\n\nfunc set_origin(position):\n\torigin_pos = position\n\t\n\tif (pad_position == LEFT):\n\t\tx_offset = RADIUS\n\telif (pad_position == RIGHT):\n\t\tx_offset = -RADIUS\n\t\t\n\torigin_pos.x += x_offset\n\tgo_to_origin()\n\t\t\nfunc go_to_origin():\n\tset_pos(origin_pos)\n\t\t\nfunc _fixed_process(delta):\n\tset_speed(delta)\n\tprevent_exiting_arena()\n\tvibrate()\n\t\nfunc set_speed(delta):\n\tvar x_axis_value = Input.get_joy_axis(pad_number, 0)\n\tvar y_axis_value = Input.get_joy_axis(pad_number, 1)\n\t\n\tvar direction = Vector2(x_axis_value, y_axis_value)\n\tvar new_pos = get_new_pos(direction, SPEED, delta)\n\t\n\tif abs(direction.x) < DEADZONE && abs(direction.y) < DEADZONE:\n\t\trecall(delta)\n\telif (new_pos.distance_to(origin_pos) < MAX_DISTANCE):\n\t\tset_pos(new_pos)  # move\?\n\telse:\n\t\trecall(delta)\n\nfunc recall(delta):\n\tvar recall_direction = (origin_pos - get_pos())\n\tvar new_pos = get_new_pos(recall_direction, RECALL_SPEED, delta)\n\t\n\tif(new_pos.distance_to(origin_pos) > 5):\n\t\tset_pos(new_pos) # move\?\n\nfunc get_new_pos(direction, speed, delta):\n\treturn get_pos() + direction.normalized() * speed * delta\n\t\nfunc prevent_exiting_arena():\n\tvar current_position = get_pos()\n\tvar viewport_size = get_viewport_rect().size\n\tvar min_x = RADIUS\n\tvar max_x = viewport_size.x - RADIUS\n\t\n\tif(current_position.x < min_x):\n\t\tcurrent_position.x = min_x\n\t\tset_pos(current_position)\n\tif(current_position.x > max_x):\n\t\tcurrent_position.x = max_x\n\t\tset_pos(current_position)\n\t\nfunc vibrate():\n\tif get_pos().distance_to(origin_pos) > (MAX_DISTANCE - 15):\n\t\tInput.start_joy_vibration(pad_number, 1, 1)\n\t\tis_vibrating = true\n\t\t\n\telif is_vibrating:\n\t\tInput.stop_joy_vibration(pad_number)\n\t\tis_vibrating = false\n"
 
 [node name="Paddle" type="Node"]
 
@@ -22,11 +19,11 @@ shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
-script/script = SubResource( 2 )
+script/script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D"]
 
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
 
