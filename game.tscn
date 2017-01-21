@@ -5,7 +5,7 @@
 
 [sub_resource type="GDScript" id=1]
 
-script/source = "extends Node\n\nfunc _ready():\n\tget_node(\"LeftPaddle/KinematicBody2D\").set_fixed_position(Vector2(50, 300))\n\tget_node(\"LeftPaddle/KinematicBody2D\").pad_number = 0\n\tget_node(\"RightPaddle/KinematicBody2D\").set_fixed_position(Vector2(974, 300))\n\tget_node(\"RightPaddle/KinematicBody2D\").pad_number = 1\n\tget_node(\"Ball/RigidBody2D\").set_pos(Vector2(100,300))"
+script/source = "extends Node\n\nvar left_pad\nvar right_pad\n\nfunc _ready():\n\tleft_pad = get_node(\"LeftPaddle/KinematicBody2D\")\n\tleft_pad.pad_number = 0\n\tleft_pad.pad_position = left_pad.LEFT\n\tleft_pad.set_fixed_position(Vector2(0, 300))\n\t\n\tright_pad = get_node(\"RightPaddle/KinematicBody2D\")\t\n\tright_pad.pad_number = 1\n\tright_pad.pad_position = right_pad.RIGHT\n\tright_pad.set_fixed_position(Vector2(1024, 300))\n\t"
 
 [node name="Node" type="Node"]
 
