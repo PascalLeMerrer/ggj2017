@@ -12,10 +12,9 @@ var scores = [0, 0]
 var hud
 
 func _ready():
+	
 	left_paddle = create_paddle("LeftPaddle/KinematicBody2D", 'left', Vector2(100, MIDDLE_Y))
 	right_paddle = create_paddle("RightPaddle/KinematicBody2D", 'right', Vector2(1340, MIDDLE_Y))
-	
-	print("left_paddle=", left_paddle," right_paddle=", right_paddle)
 	
 	hud = get_node('Hud')
 	spawn_new_ball('left')
