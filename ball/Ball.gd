@@ -7,11 +7,12 @@ const LINEAR_DAMPING = 0.99
 var game_root
 var left_goal
 var right_goal
-var initial_position
 
 var idle_counter = 0
 var has_moved = false
 var first_idle_time = true
+
+var last_paddle_hit
 
 func _ready():
 	set_contact_monitor(true)
@@ -34,7 +35,10 @@ func _fixed_process(delta):
 		idle_counter = 0
 		
 	if idle_counter > FRAMES_BETWEEN_SPAWN and first_idle_time:
-		game_root.spawn_new_ball('left') 
+		if last_paddle_hit == 'LeftPaddle':
+			game_root.spawn_new_ball('right')
+		else:
+			game_root.spawn_new_ball('left')
 		first_idle_time = false
 
 	
@@ -42,6 +46,8 @@ func _on_RigidBody2D_body_enter( body ):
 	if(body extends StaticBody2D):
 		process_collision_with_goal(body, left_goal)
 		process_collision_with_goal(body, right_goal)
+	elif (body extends KinematicBody2D):
+		last_paddle_hit = body.get_parent().get_name()
 		
 func process_collision_with_goal(collider, goal):
 	if (collider == goal):

@@ -12,6 +12,7 @@ func register_paddle(paddle):
 func create_ball(paddle, arena):
 	if(balls.size() >= MAX_BALLS):
 		return null
+		
 	var ball = Ball.instance()
 	ball.set_name("Ball" + str(ball_count))
 	arena.add_child(ball)
@@ -20,7 +21,7 @@ func create_ball(paddle, arena):
 	var initial_position = paddle.get_pos()
 	initial_position.x += paddle.x_offset
 	ball.get_node("RigidBody2D").set_pos(initial_position)
-	ball.get_node("RigidBody2D").initial_position = initial_position
+
 	balls.append(ball)
 	return ball
 	
