@@ -18,6 +18,7 @@ func create_ball(paddle, arena):
 	var initial_position = paddle.get_pos()
 	initial_position.x += paddle.x_offset
 	ball.get_node("RigidBody2D").set_pos(initial_position)
+	ball.get_node("RigidBody2D").initial_position = initial_position
 	balls.append(ball)
 	return ball
 	

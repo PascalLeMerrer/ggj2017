@@ -18,8 +18,8 @@ func _ready():
 	print("left_paddle=", left_paddle," right_paddle=", right_paddle)
 	
 	hud = get_node('Hud')
-	ball_factory.create_ball(right_paddle, self)
-	
+	spawn_new_ball('left')
+
 	init_goals()
 	init_scores()
 	
@@ -50,14 +50,14 @@ func on_goal_hit(ball, goal_position):
 	ball_factory.destroy_ball(ball)
 
 	if goal_position == 'left' and increase_score(1, 10):
-		ball_factory.create_ball(left_paddle, self)
+		spawn_new_ball('left')
 	elif goal_position == 'right' and increase_score(0, 10):
-		ball_factory.create_ball(right_paddle, self)
+		spawn_new_ball('right')
 	else:
 		ball_factory.destroy_all_balls()
 		hud.victory(goal_position)
 		game_over = true
-
+		
 func increase_score(player, points):
 	scores[player] += points
 	hud.set_score(player, scores[player])
@@ -73,8 +73,15 @@ func reset_game():
 	right_paddle.go_to_origin()
 	ball_factory.destroy_all_balls()
 	ball_factory.create_ball(left_paddle, self)
+
 	scores[0] = 0
 	hud.set_score(0, 0)
 	hud.set_score(1, 0)
 	scores[1] = 0
 	hud.reset_hud()
+	
+func spawn_new_ball(position):
+	if position == 'left':
+		ball_factory.create_ball(left_paddle, self)
+	elif position == 'right':
+		ball_factory.create_ball(right_paddle, self)
