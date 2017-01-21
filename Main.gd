@@ -1,3 +1,5 @@
+const MIDDLE_Y = 450
+
 var ball_factory = preload("ball/BallFactory.gd").new()
 
 var left_paddle
@@ -5,8 +7,8 @@ var right_paddle
 var paddle_counter = 0
 
 func _ready():
-	left_paddle = create_paddle("LeftPaddle/KinematicBody2D", 'left', Vector2(0, 300))
-	right_paddle = create_paddle("RightPaddle/KinematicBody2D", 'right', Vector2(1024, 300))
+	left_paddle = create_paddle("LeftPaddle/KinematicBody2D", 'left', Vector2(0, MIDDLE_Y))
+	right_paddle = create_paddle("RightPaddle/KinematicBody2D", 'right', Vector2(1024, MIDDLE_Y))
 	ball_factory.create_ball(left_paddle, self)
 	
 func create_paddle(node_path, position, origin):
