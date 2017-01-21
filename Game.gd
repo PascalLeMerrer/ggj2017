@@ -49,20 +49,30 @@ func on_goal_hit(ball, goal_position):
 
 	ball_factory.destroy_ball(ball)
 
-	if goal_position == 'left' and increase_score(1, 10):
-		spawn_new_ball('left')
-	elif goal_position == 'right' and increase_score(0, 10):
-		spawn_new_ball('right')
-	else:
+	if goal_position == 'left':
+		increase_score(1, 10)
+		if has_won(1):
+			finish_game('right')
+		else:
+			spawn_new_ball('left')
+	elif goal_position == 'right':
+		increase_score(0, 10)
+		if has_won(0):
+			finish_game('left')
+		else:
+			spawn_new_ball('right')
+	
+func finish_game(winner):
 		ball_factory.destroy_all_balls()
-		hud.victory(goal_position)
+		hud.victory(winner)
 		game_over = true
 		
 func increase_score(player, points):
 	scores[player] += points
 	hud.set_score(player, scores[player])
-	
-	return scores[player] < victory_condition
+
+func has_won(player):
+	return scores[player] >= victory_condition
 	
 func init_goals():
 	get_node("LeftGoal/StaticBody2D").position = 'left'
