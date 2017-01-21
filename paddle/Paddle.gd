@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const Color_Generator = preload("res://ColorGenerator.gd")
+var Color_Generator = preload("res://ColorGenerator.gd").new()
 
 const MAX_DISTANCE = 256
 const DEADZONE = 0.4
@@ -17,9 +17,12 @@ var pad_position # should be 'left' or 'right'
 var is_vibrating = false
 var x_offset
 
+var current_color
+
 func _ready():
 	set_fixed_process(true)
-	get_node("Sprite").set_modulate(Color_Generator.get_random_color())
+	current_color = Color_Generator.get_random_color()
+	get_node("Sprite").set_modulate(current_color)
 
 func set_origin(position):
 	origin_pos = position
@@ -39,6 +42,10 @@ func _fixed_process(delta):
 	set_speed(delta)
 	prevent_exiting_arena()
 	vibrate()
+	var new_color = Color_Generator.select_color(pad_number, current_color)
+	if new_color != null:
+		current_color = new_color
+		get_node("Sprite").set_modulate(new_color)
 	
 func set_speed(delta):
 	var x_axis_value = Input.get_joy_axis(pad_number, 0)

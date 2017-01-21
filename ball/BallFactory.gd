@@ -9,6 +9,7 @@ var balls = []
 func register_paddle(paddle):
 	paddles.append(paddle)
 	
+	
 func create_ball(paddle, arena):
 	if(balls.size() >= MAX_BALLS):
 		return null
@@ -26,13 +27,14 @@ func create_ball(paddle, arena):
 	ball.get_node("RigidBody2D").set_pos(initial_position)
 
 	balls.append(ball)
+	
 	return ball
 	
 func destroy_ball(ball):
-	balls.remove(balls.find(ball))
-	ball.queue_free()
+	balls.erase(ball.get_parent())
+	ball.get_parent().queue_free()
 	
 func destroy_all_balls():
 	for ball in balls:
-		ball.queue_free()
+		ball.get_parent().queue_free()
 	balls.clear()
