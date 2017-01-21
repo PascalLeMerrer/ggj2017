@@ -56,7 +56,7 @@ func recall(delta):
 	var new_pos = get_new_pos(recall_direction, RECALL_SPEED, delta)
 	
 	if(new_pos.distance_to(origin_pos) > 5):
-		set_pos(new_pos) # move?
+		set_pos(new_pos)
 
 func get_new_pos(direction, speed, delta):
 	return get_pos() + direction.normalized() * speed * delta
