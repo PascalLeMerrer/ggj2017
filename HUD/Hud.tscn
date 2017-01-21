@@ -89,7 +89,7 @@ margin/top = 25.0
 margin/right = 1020.0
 margin/bottom = 75.0
 custom_fonts/font = ExtResource( 2 )
-text = "Player Left scores!!!"
+text = "Left player scores!"
 align = 1
 valign = 1
 percent_visible = 1.0
@@ -102,6 +102,22 @@ process_mode = 1
 wait_time = 2.0
 one_shot = false
 autostart = false
+
+[node name="Debug" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 27.0
+margin/top = 701.0
+margin/right = 67.0
+margin/bottom = 732.0
+custom_fonts/font = ExtResource( 2 )
+text = "..."
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [connection signal="timeout" from="ScorerTimeout" to="." method="_on_ScorerTimeout_timeout"]
 

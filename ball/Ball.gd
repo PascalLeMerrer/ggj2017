@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 const IDLE_SPEED = 2
-const FRAMES_BETWEEN_SPAWN = 120
+const FRAMES_BETWEEN_SPAWN = 100
 const LINEAR_DAMPING = 0.99
 
 var game_root
@@ -11,10 +11,15 @@ var right_goal
 var idle_counter = 0
 var has_moved = false
 var first_idle_time = true
+var is_out = false
 
 var last_paddle_hit
 
 func _ready():
+	idle_counter = 0
+	has_moved = false
+	first_idle_time = true
+	is_out = false
 	set_contact_monitor(true)
 	set_max_contacts_reported(5)
 
@@ -23,7 +28,7 @@ func _ready():
 	right_goal = game_root.get_node("RightGoal/StaticBody2D")
 	set_fixed_process(true)
 	set_linear_damp(LINEAR_DAMPING)
-	#	
+	
 func _fixed_process(delta):
 	var velocity = get_linear_velocity()
 	var is_idle = velocity.x < IDLE_SPEED and velocity.y < IDLE_SPEED
@@ -34,7 +39,7 @@ func _fixed_process(delta):
 	else:
 		idle_counter = 0
 		
-	if idle_counter > FRAMES_BETWEEN_SPAWN and first_idle_time:
+	if idle_counter > FRAMES_BETWEEN_SPAWN and first_idle_time and !is_out:
 		if last_paddle_hit == 'LeftPaddle':
 			game_root.spawn_new_ball('right')
 		else:
@@ -48,7 +53,10 @@ func _on_RigidBody2D_body_enter( body ):
 		process_collision_with_goal(body, right_goal)
 	elif (body extends KinematicBody2D):
 		last_paddle_hit = body.get_parent().get_name()
+#		print(last_paddle_hit)
+#		game_root.get_node("Hud").set_debug_text(last_paddle_hit)
 		
 func process_collision_with_goal(collider, goal):
 	if (collider == goal):
+		is_out = true
 		game_root.on_goal_hit(self, goal.position)

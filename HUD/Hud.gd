@@ -28,9 +28,9 @@ func reset_hud():
 func set_score(player, score):
 	var who_scores = ""
 	if score != 0 and player == 0:
-		who_scores = "Player left scores!!!"
+		who_scores = "Left player scores!"
 	elif score != 0 and player == 1:
-		who_scores = "Player right scores!!!"
+		who_scores = "Right player scores!"
 	
 	score_labels[player].set_text(str(score))
 	scorer_text.set_text(who_scores)
@@ -39,3 +39,6 @@ func set_score(player, score):
 
 func _on_ScorerTimeout_timeout():
 	scorer_text.hide()
+	
+func set_debug_text(text):
+	get_node("Debug").set_text(text)
