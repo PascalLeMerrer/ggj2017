@@ -94,7 +94,5 @@ func spawn_new_ball(position):
 	
 	if position == 'left':
 		ball_factory.create_ball(left_paddle, self)
-		left_paddle.go_to_origin()
 	elif position == 'right':
-		right_paddle.go_to_origin()
 		ball_factory.create_ball(right_paddle, self)
