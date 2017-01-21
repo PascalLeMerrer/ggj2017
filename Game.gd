@@ -95,7 +95,12 @@ func reset_game():
 	hud.set_score(1, 0)
 	scores[1] = 0
 	hud.reset_hud()
-
+	
+	for child in self.get_children():
+		if child extends Timer:
+			child.stop()
+			child.queue_free()
+        
 func spawn_new_ball(position):
 	
 	if position == 'left':
@@ -104,5 +109,8 @@ func spawn_new_ball(position):
 		ball_factory.create_ball(right_paddle, self)
 
 func spawn_new_ball_with_timer(position, timer):
-	spawn_new_ball(position)
+	if !game_over:
+		print('print via timer')
+		spawn_new_ball(position)
+	
 	timer.queue_free()
