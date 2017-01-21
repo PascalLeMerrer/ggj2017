@@ -5,7 +5,7 @@
 
 [sub_resource type="GDScript" id=1]
 
-script/source = "extends Node\n\nvar left_pad\nvar right_pad\n\nfunc _ready():\n\tleft_pad = get_node(\"LeftPaddle/KinematicBody2D\")\n\tleft_pad.pad_number = 0\n\tleft_pad.pad_position = left_pad.LEFT\n\tleft_pad.set_fixed_position(Vector2(0, 300))\n\t\n\tright_pad = get_node(\"RightPaddle/KinematicBody2D\")\t\n\tright_pad.pad_number = 1\n\tright_pad.pad_position = right_pad.RIGHT\n\tright_pad.set_fixed_position(Vector2(1024, 300))\n\t"
+script/source = "extends \"ball/ball_factory.gd\"\n\nvar left_pad\nvar right_pad\nvar paddle_counter = 0\n\nfunc _ready():\n\tleft_pad = create_paddle(\"LeftPaddle/KinematicBody2D\", \'left\', Vector2(0, 300))\n\tright_pad = create_paddle(\"RightPaddle/KinematicBody2D\", \'right\', Vector2(1024, 300))\n\t\n\nfunc create_paddle(node_path, position, origin):\n\tvar paddle = get_node(node_path)\n\tpaddle.pad_number = paddle_counter \n\tpaddle.pad_position = position\n\tpaddle.set_origin(origin)\n\tregister_paddle(paddle)\n\tpaddle_counter += 1"
 
 [node name="Node" type="Node"]
 
