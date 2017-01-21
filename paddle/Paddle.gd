@@ -2,8 +2,8 @@ extends Node
 
 const MAX_DISTANCE = 256
 const DEADZONE = 0.4
-const SPEED = 500
-const RECALL_SPEED = 150
+const SPEED = 1500
+const RECALL_SPEED = 300
 
 const LEFT = 'left'
 const RIGHT = 'right'
