@@ -48,19 +48,25 @@ func init_scores():
 func on_goal_hit(ball, goal_position):
 
 	ball_factory.destroy_ball(ball)
+	
+	var spawn_timer = Timer.new()
+	spawn_timer.set_wait_time(2)
+	spawn_timer.connect("timeout", self, "spawn_new_ball_with_timer", [goal_position, spawn_timer])
 
 	if goal_position == 'left':
 		increase_score(1, 10)
 		if has_won(1):
 			finish_game('right')
 		else:
-			spawn_new_ball('left')
+			add_child(spawn_timer)
+			spawn_timer.start()
 	elif goal_position == 'right':
 		increase_score(0, 10)
 		if has_won(0):
 			finish_game('left')
 		else:
-			spawn_new_ball('right')
+			add_child(spawn_timer)
+			spawn_timer.start()
 	
 func finish_game(winner):
 		ball_factory.destroy_all_balls()
@@ -89,10 +95,14 @@ func reset_game():
 	hud.set_score(1, 0)
 	scores[1] = 0
 	hud.reset_hud()
-	
+
 func spawn_new_ball(position):
 	
 	if position == 'left':
 		ball_factory.create_ball(left_paddle, self)
 	elif position == 'right':
 		ball_factory.create_ball(right_paddle, self)
+
+func spawn_new_ball_with_timer(position, timer):
+	spawn_new_ball(position)
+	timer.queue_free()
