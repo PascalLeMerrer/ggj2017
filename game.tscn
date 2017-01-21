@@ -6,7 +6,7 @@
 [ext_resource path="res://Goal/Goal.tscn" type="PackedScene" id=4]
 [ext_resource path="res://arena/rect_arena.tscn" type="PackedScene" id=5]
 
-[node name="Node2D" type="Node2D"]
+[node name="Game" type="Node2D"]
 
 script/script = ExtResource( 1 )
 

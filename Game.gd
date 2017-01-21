@@ -7,8 +7,8 @@ var right_paddle
 var paddle_counter = 0
 
 func _ready():
-	left_paddle = create_paddle("LeftPaddle/KinematicBody2D", 'left', Vector2(0, MIDDLE_Y))
-	right_paddle = create_paddle("RightPaddle/KinematicBody2D", 'right', Vector2(1440, MIDDLE_Y))
+	left_paddle = create_paddle("LeftPaddle/KinematicBody2D", 'left', Vector2(100, MIDDLE_Y))
+	right_paddle = create_paddle("RightPaddle/KinematicBody2D", 'right', Vector2(1340, MIDDLE_Y))
 	ball_factory.create_ball(left_paddle, self)
 	
 func create_paddle(node_path, position, origin):
