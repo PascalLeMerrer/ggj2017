@@ -42,25 +42,40 @@ func set_speed(delta):
 	var y_axis_value = Input.get_joy_axis(pad_number, 1)
 	
 	var direction = Vector2(x_axis_value, y_axis_value)
-	var new_pos = get_new_pos(direction, SPEED, delta)
+	var motion = get_motion(direction, SPEED, delta)
+	var new_pos = get_pos() + motion
 	
 	if abs(direction.x) < DEADZONE && abs(direction.y) < DEADZONE:
 		recall(delta)
 	elif (new_pos.distance_to(origin_pos) < MAX_DISTANCE):
-		set_pos(new_pos)  # move?
+		custom_move(motion, direction, SPEED)
+
 	else:
 		recall(delta)
 
 func recall(delta):
 	var recall_direction = (origin_pos - get_pos())
-	var new_pos = get_new_pos(recall_direction, RECALL_SPEED, delta)
+	var motion = get_motion(recall_direction, RECALL_SPEED, delta)
+	var new_pos = get_pos() + motion
 	
 	if(new_pos.distance_to(origin_pos) > 5):
-		set_pos(new_pos) # move?
+		custom_move(motion, recall_direction, RECALL_SPEED)
 
-func get_new_pos(direction, speed, delta):
-	return get_pos() + direction.normalized() * speed * delta
+func get_motion(direction, speed, delta):
+	return direction.normalized() * speed * delta
+
+#func custom_move(motion, direction, speed):
+#	set_pos(get_pos() + motion)
+
+func custom_move(motion, direction, speed):
+	motion = move(motion)
 	
+	if (is_colliding()):
+		var n = get_collision_normal()
+		motion = n.slide(motion)
+		n.slide(direction.normalized() * speed)
+		move(motion)
+
 func prevent_exiting_arena():
 	var current_position = get_pos()
 	var viewport_size = get_viewport_rect().size
