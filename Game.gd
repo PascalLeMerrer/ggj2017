@@ -19,3 +19,6 @@ func create_paddle(node_path, position, origin):
 	ball_factory.register_paddle(paddle)
 	paddle_counter += 1
 	return paddle
+
+func init_scores():
+	get_node("Hud").set_score(1, 999)
