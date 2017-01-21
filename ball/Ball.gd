@@ -1,14 +1,23 @@
 extends RigidBody2D
 
+var game_root
+var left_goal
+var right_goal
+
 func _ready():
 	set_contact_monitor(true)
 	set_max_contacts_reported(5)
 
+	game_root = get_node("/root/Game")
+	left_goal = game_root.get_node("LeftGoal/StaticBody2D")
+	right_goal = game_root.get_node("RightGoal/StaticBody2D")
+	
 func _on_RigidBody2D_body_enter( body ):
-
-	var left_goal = get_node("/root/Game/LeftGoal")
-	var right_goal = get_node("/root/Game/LeftGoal")
-
-	if(body == left_goal or body == right_goal):
-		print("goal was hit")
-		queue_free()
+	if(body extends StaticBody2D):
+		process_collision_with_goal(body, left_goal)
+		process_collision_with_goal(body, right_goal)
+		
+func process_collision_with_goal(collider, goal):
+	if (collider == goal):
+		game_root.on_goal_hit(goal.position)
+		get_parent().destroy()
