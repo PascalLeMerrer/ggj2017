@@ -16,6 +16,8 @@ var is_out = false
 var last_paddle_hit
 
 func _ready():
+	add_to_group('balls')
+	
 	idle_counter = 0
 	has_moved = false
 	first_idle_time = true
@@ -40,20 +42,28 @@ func _fixed_process(delta):
 		idle_counter = 0
 		
 	if idle_counter > FRAMES_BETWEEN_SPAWN and first_idle_time and !is_out:
-		if last_paddle_hit == 'LeftPaddle':
-			game_root.spawn_new_ball('right')
-		else:
-			game_root.spawn_new_ball('left')
+		spawn_new_ball()
 		first_idle_time = false
 
+func spawn_new_ball():
+	if last_paddle_hit == 'LeftPaddle':
+		game_root.spawn_new_ball('right')
+	else:
+		game_root.spawn_new_ball('left')
 	
 func _on_RigidBody2D_body_enter( body ):
-	if(body extends StaticBody2D):
-		if !process_collision_with_goal(body, left_goal) and !process_collision_with_goal(body, right_goal):
-			process_collision_with_border(body)
-	elif (body extends KinematicBody2D):
+	if body.is_in_group('borders'):
+		process_collision_with_border(body)
+		
+	elif body.is_in_group('goals'):
+		process_collision_with_goal(body, left_goal)
+		process_collision_with_goal(body, right_goal)
+			
+	elif body.is_in_group('paddles'):
 		last_paddle_hit = body.get_parent().get_name()
-		get_node("Sprite").set_modulate(body.current_color)
+		color = body.current_color
+		get_node("Sprite").set_modulate(color)
+
 		
 func process_collision_with_goal(collider, goal):
 	if (collider == goal):

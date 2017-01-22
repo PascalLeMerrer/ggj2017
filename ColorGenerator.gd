@@ -17,10 +17,9 @@ func get_random_color():
 	return colors[randi() % 3]
 
 func get_new_random_color(current_color):
-	randomize()
-	var new_color = colors[randi() % 3]
+	var new_color = get_random_color()
 	while(new_color == current_color):
-		new_color = colors[randi() % 3]
+		new_color = get_random_color()
 	return new_color
 
 func get_next_color(current_color):

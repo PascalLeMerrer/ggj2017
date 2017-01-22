@@ -2,5 +2,6 @@ extends StaticBody2D
 
 var position
 
-func is_goal():
-	return true
+func _ready():
+	add_to_group('goals')
+	

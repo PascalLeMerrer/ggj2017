@@ -20,6 +20,7 @@ var x_offset
 var current_color
 
 func _ready():
+	add_to_group('paddles')
 	set_fixed_process(true)
 	current_color = Color_Generator.get_random_color()
 	get_node("Sprite").set_modulate(current_color)
