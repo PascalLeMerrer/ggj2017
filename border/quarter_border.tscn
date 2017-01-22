@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=15 format=1]
 
 [ext_resource path="res://border/quarter_border.gd" type="Script" id=1]
 [ext_resource path="res://border/images/corner_border.png" type="Texture" id=2]
@@ -7,7 +7,57 @@
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 161.464, -17.0344, 195.278, -5.27297, 149.702, 7.95863, 123.239, -10.4186 )
+points = Vector2Array( 43.7956, -20.8301, 398.266, -20.7169, 398.225, 5.99087, 78.2379, 6.09554, 57.1986, 4.83946 )
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 43.7956, -20.8301, 57.1986, 4.83946, 48.6153, 7.0376, 31.0302, -14.0018 )
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 22.9703, -8.3494, 31.0302, -14.0018, 48.6153, 7.0376, 43.3817, 10.2825, 17.946, -1.12693 )
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 17.946, -1.12693, 43.3817, 10.2825, 38.5667, 14.9928, 11.4562, 10.9105 )
+
+[sub_resource type="ConvexPolygonShape2D" id=5]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 11.4562, 10.9105, 38.5667, 14.9928, 35.2171, 22.1106, 8.73473, 20.8545 )
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 8.42071, 232.086, 8.73473, 20.8545, 35.2171, 22.1106, 35.0078, 231.981, 33.8564, 240.145, 29.7741, 251.45 )
+
+[sub_resource type="ConvexPolygonShape2D" id=7]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 4.75713, 241.506, 8.42071, 232.086, 29.7741, 251.45, 22.3423, 262.755 )
+
+[sub_resource type="ConvexPolygonShape2D" id=8]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -0.162525, 246.949, 4.75713, 241.506, 22.3423, 262.755, 11.8749, 272.804, -5.18684, 278.77 )
+
+[sub_resource type="ConvexPolygonShape2D" id=9]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -6.5476, 250.299, -0.162525, 246.949, -5.18684, 278.77 )
+
+[sub_resource type="ConvexPolygonShape2D" id=10]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -14.0841, 251.869, -6.5476, 250.299, -5.18684, 278.77, -35.1235, 278.142 )
+
+[sub_resource type="ConvexPolygonShape2D" id=11]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -14.0841, 251.869, -35.1235, 278.142, -35.1235, 252.706 )
 
 [node name="StaticBody2D" type="StaticBody2D"]
 
@@ -16,6 +66,36 @@ input/pickable = false
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
+shapes/1/shape = SubResource( 2 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/1/trigger = false
+shapes/2/shape = SubResource( 3 )
+shapes/2/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/2/trigger = false
+shapes/3/shape = SubResource( 4 )
+shapes/3/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/3/trigger = false
+shapes/4/shape = SubResource( 5 )
+shapes/4/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/4/trigger = false
+shapes/5/shape = SubResource( 6 )
+shapes/5/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/5/trigger = false
+shapes/6/shape = SubResource( 7 )
+shapes/6/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/6/trigger = false
+shapes/7/shape = SubResource( 8 )
+shapes/7/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/7/trigger = false
+shapes/8/shape = SubResource( 9 )
+shapes/8/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/8/trigger = false
+shapes/9/shape = SubResource( 10 )
+shapes/9/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/9/trigger = false
+shapes/10/shape = SubResource( 11 )
+shapes/10/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/10/trigger = false
 collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
@@ -56,7 +136,7 @@ texture = ExtResource( 3 )
 
 build_mode = 0
 polygon = Vector2Array( 398.266, -20.7169, 43.7956, -20.8301, 31.0302, -14.0018, 22.9703, -8.3494, 17.946, -1.12693, 11.4562, 10.9105, 8.73473, 20.8545, 8.42071, 232.086, 4.75713, 241.506, -0.162525, 246.949, -6.5476, 250.299, -14.0841, 251.869, -35.1235, 252.706, -35.1235, 278.142, -5.18684, 278.77, 11.8749, 272.804, 22.3423, 262.755, 29.7741, 251.45, 33.8564, 240.145, 35.0078, 231.981, 35.2171, 22.1106, 38.5667, 14.9928, 43.3817, 10.2825, 48.6153, 7.0376, 57.1986, 4.83946, 78.2379, 6.09554, 398.225, 5.99087 )
-shape_range = Vector2( 0, 0 )
+shape_range = Vector2( 0, 10 )
 trigger = false
 
 
