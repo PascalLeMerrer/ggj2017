@@ -8,8 +8,8 @@ func get_color():
 func set_color(new_color):
 	color = new_color
 	
-	get_node("Corner/StaticBody2D/Sprite").set_modulate(new_color)
-	get_node("GoalCorner/StaticBody2D/Sprite").set_modulate(new_color)
-	get_node("GoalLine/StaticBody2D/Sprite").set_modulate(new_color)
-	get_node("BorderLine1/StaticBody2D/Sprite").set_modulate(new_color)
-	get_node("BorderLine2/StaticBody2D/Sprite").set_modulate(new_color)
+	get_node("Corner").set_modulate(new_color)
+	get_node("GoalCorner").set_modulate(new_color)
+	get_node("GoalBorder").set_modulate(new_color)
+	get_node("BorderLine1").set_modulate(new_color)
+	get_node("BorderLine2").set_modulate(new_color)

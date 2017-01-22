@@ -1,13 +1,21 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://border/quarter_border.gd" type="Script" id=1]
-[ext_resource path="res://border/corner_border.tscn" type="PackedScene" id=2]
-[ext_resource path="res://border/line_border.tscn" type="PackedScene" id=3]
+[ext_resource path="res://border/images/corner_border.png" type="Texture" id=2]
+[ext_resource path="res://border/images/border.png" type="Texture" id=3]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 161.464, -17.0344, 195.278, -5.27297, 149.702, 7.95863, 123.239, -10.4186 )
 
 [node name="StaticBody2D" type="StaticBody2D"]
 
 transform/pos = Vector2( 45.7758, 21.8928 )
 input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
@@ -16,27 +24,39 @@ friction = 1.0
 bounce = 0.0
 script/script = ExtResource( 1 )
 
-[node name="Corner" parent="." instance=ExtResource( 2 )]
+[node name="Corner" type="Sprite" parent="."]
 
-transform/pos = Vector2( 44, 36 )
+transform/pos = Vector2( 43.4582, 14.1861 )
+texture = ExtResource( 2 )
 
-[node name="GoalCorner" parent="." instance=ExtResource( 2 )]
+[node name="GoalCorner" type="Sprite" parent="."]
 
-transform/pos = Vector2( -9.17939e-06, 265 )
-transform/rot = 180.0
+transform/pos = Vector2( -6.29444e-06, 243.837 )
+transform/rot = -180.0
+texture = ExtResource( 2 )
 
-[node name="GoalLine" parent="." instance=ExtResource( 3 )]
+[node name="GoalBorder" type="Sprite" parent="."]
 
-transform/pos = Vector2( 44.3783, 150.404 )
+transform/pos = Vector2( 43.0181, 128.771 )
+texture = ExtResource( 3 )
 
-[node name="BorderLine1" parent="." instance=ExtResource( 3 )]
+[node name="BorderLine1" type="Sprite" parent="."]
 
-transform/pos = Vector2( 158.462, 36.1594 )
+transform/pos = Vector2( 158.367, 13.8272 )
 transform/rot = -90.0
+texture = ExtResource( 3 )
 
-[node name="BorderLine2" parent="." instance=ExtResource( 3 )]
+[node name="BorderLine2" type="Sprite" parent="."]
 
-transform/pos = Vector2( 318.462, 36.1594 )
+transform/pos = Vector2( 318.367, 13.8272 )
 transform/rot = -90.0
+texture = ExtResource( 3 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+build_mode = 0
+polygon = Vector2Array( 398.266, -20.7169, 43.7956, -20.8301, 31.0302, -14.0018, 22.9703, -8.3494, 17.946, -1.12693, 11.4562, 10.9105, 8.73473, 20.8545, 8.42071, 232.086, 4.75713, 241.506, -0.162525, 246.949, -6.5476, 250.299, -14.0841, 251.869, -35.1235, 252.706, -35.1235, 278.142, -5.18684, 278.77, 11.8749, 272.804, 22.3423, 262.755, 29.7741, 251.45, 33.8564, 240.145, 35.0078, 231.981, 35.2171, 22.1106, 38.5667, 14.9928, 43.3817, 10.2825, 48.6153, 7.0376, 57.1986, 4.83946, 78.2379, 6.09554, 398.225, 5.99087 )
+shape_range = Vector2( 0, 0 )
+trigger = false
 
 

@@ -12,35 +12,35 @@ script/script = ExtResource( 1 )
 
 [node name="TopLeftQuarter" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 34.7758, -1.1072 )
+transform/pos = Vector2( 34.7758, 18.8928 )
 z/z = 1
 
 [node name="BottomLeftQuarter" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 34.9751, 901.195 )
+transform/pos = Vector2( 34.9751, 880.195 )
 transform/scale = Vector2( 1, -1 )
 z/z = 1
 
 [node name="BottomRightQuarter" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 1404.98, 901.195 )
+transform/pos = Vector2( 1404.98, 879.195 )
 transform/scale = Vector2( -1, -1 )
 z/z = 1
 
 [node name="TopRightQuarter" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 1404.98, -0.804993 )
+transform/pos = Vector2( 1404.98, 19.195 )
 transform/scale = Vector2( -1, 1 )
 z/z = 1
 
 [node name="TopLargeBorder" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 680.59, 17.8679 )
+transform/pos = Vector2( 452.516, -1.63825 )
 z/z = 1
 
 [node name="BottomLargeBorder" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 679.893, 882.198 )
+transform/pos = Vector2( 452.118, 900.003 )
 transform/scale = Vector2( 1, -1 )
 z/z = 1
 
