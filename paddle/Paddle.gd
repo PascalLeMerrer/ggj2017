@@ -5,7 +5,6 @@ var Color_Generator = preload("res://ColorGenerator.gd").new()
 const MAX_DISTANCE = 256
 const DEADZONE = 0.4
 const SPEED = 1500
-const RECALL_SPEED = 300
 
 const LEFT = 'left'
 const RIGHT = 'right'
@@ -53,21 +52,13 @@ func set_speed(delta):
 	var y_axis_value = Input.get_joy_axis(pad_number, 1)
 	
 	var direction = Vector2(x_axis_value, y_axis_value)
+	
 	var new_pos = get_new_pos(direction, SPEED, delta)
 	
-	if abs(direction.x) < DEADZONE && abs(direction.y) < DEADZONE:
-		recall(delta)
-	elif (new_pos.distance_to(origin_pos) < MAX_DISTANCE):
-		set_pos(new_pos)  # move?
-	else:
-		recall(delta)
-
-func recall(delta):
-	var recall_direction = (origin_pos - get_pos())
-	var new_pos = get_new_pos(recall_direction, RECALL_SPEED, delta)
-	
-	if(new_pos.distance_to(origin_pos) > 5):
+	if direction.length() > DEADZONE and (new_pos.distance_to(origin_pos) < MAX_DISTANCE):
 		set_pos(new_pos)
+	else:
+		revert_motion()
 
 func get_new_pos(direction, speed, delta):
 	return get_pos() + direction.normalized() * speed * delta
