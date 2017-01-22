@@ -3,6 +3,11 @@ extends RigidBody2D
 const IDLE_SPEED = 2
 const FRAMES_BETWEEN_SPAWN = 100
 const LINEAR_DAMPING = 0.99
+const SHRINK_FACTOR = 0.9
+const GROWTH_FACTOR = 1.1
+const MIN_SIZE = 0
+const INITIAL_SIZE = 2
+const MAX_SIZE = 4
 
 var game_root
 var left_goal
@@ -14,6 +19,8 @@ var first_idle_time = true
 var is_out = false
 
 var last_paddle_hit
+var color
+var current_size = INITIAL_SIZE
 
 func _ready():
 	add_to_group('balls')
@@ -72,9 +79,17 @@ func process_collision_with_goal(collider, goal):
 		return true
 	return false
 	
-func process_collision_with_border(collider):
-	# var wall_color = collider.get_color()
-	# if wall_color == get_node("Sprite"):
-		# TODO
-	# else:
-		# TODO
+func process_collision_with_border(border):
+	var wall_color = border.get_color()
+	if wall_color == color and current_size >= MIN_SIZE:
+		current_size -= 1
+		change_scale(Vector2(SHRINK_FACTOR, SHRINK_FACTOR))
+
+	elif current_size <= MAX_SIZE:
+		current_size += 1
+		change_scale(Vector2(GROWTH_FACTOR, GROWTH_FACTOR))
+		
+func change_scale(ratio):
+	get_node("Sprite").scale(ratio)
+	get_node("CollisionShape2D").scale(ratio)	
+	
