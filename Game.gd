@@ -105,8 +105,8 @@ func reset_game():
 	hud.reset_hud()
 	
 	for timer in timers:
-		timer.stop()
-		timer.queue_free()
+		if timer != null:
+			timer.queue_free()
 	timers.clear()
         
 func spawn_new_ball(position):
@@ -119,4 +119,5 @@ func spawn_new_ball(position):
 func spawn_new_ball_with_timer(position, timer):
 	if !game_over:
 		spawn_new_ball(position)
+	timers.erase(timer)
 	timer.queue_free()
