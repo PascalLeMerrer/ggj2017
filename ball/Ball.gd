@@ -10,6 +10,7 @@ const GROWTH_FACTOR = 1.1
 const MIN_SIZE = 0
 const INITIAL_SIZE = 2
 const MAX_SIZE = 4
+const ACCELERATION = 2
 
 var game_root
 var left_goal
@@ -73,9 +74,7 @@ func _on_RigidBody2D_body_enter( body ):
 		process_collision_with_goal(body, right_goal)
 			
 	elif body.is_in_group('paddles'):
-		last_paddle_hit = body.get_parent().get_name()
-		color = body.current_color
-		get_node("Sprite").set_modulate(color)
+		process_collision_with_paddle(body)
 		
 		randomize()
 		if randi() % 5 == 0 and shockwave == null:
@@ -103,6 +102,7 @@ func process_collision_with_border(border):
 	if wall_color == color and current_size >= MIN_SIZE:
 		current_size -= 1
 		change_scale(Vector2(SHRINK_FACTOR, SHRINK_FACTOR))
+		accelerate()
 
 	elif current_size <= MAX_SIZE:
 		current_size += 1
@@ -111,4 +111,13 @@ func process_collision_with_border(border):
 func change_scale(ratio):
 	get_node("Sprite").scale(ratio)
 	get_node("CollisionShape2D").scale(ratio)	
+
 	
+func process_collision_with_paddle(paddle):
+	last_paddle_hit = paddle.get_parent().get_name()
+	color = paddle.current_color
+	get_node("Sprite").set_modulate(color)
+	
+func accelerate():
+	var linearVelocity = get_linear_velocity()
+	set_linear_velocity(linearVelocity * ACCELERATION)
