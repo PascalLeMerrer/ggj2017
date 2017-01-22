@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=1]
+[gd_scene load_steps=13 format=1]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://paddle/Paddle.tscn" type="PackedScene" id=2]
@@ -10,6 +10,11 @@
 [ext_resource path="res://musics/Air_Hockey_Hard.ogg" type="AudioStream" id=8]
 [ext_resource path="res://musics/Victory.ogg" type="AudioStream" id=9]
 [ext_resource path="res://waveball/WaveballFactory.tscn" type="PackedScene" id=10]
+[ext_resource path="res://musics/BUT.wav" type="Sample" id=11]
+
+[sub_resource type="SampleLibrary" id=1]
+
+samples/BUT = { "db":0.0, "pitch":1.0, "sample":ExtResource( 11 ) }
 
 [node name="Game" type="Node2D"]
 
@@ -76,5 +81,16 @@ stream/loop_restart_time = 0.0
 stream/buffering_ms = 500
 
 [node name="WaveballFactory" parent="." instance=ExtResource( 10 )]
+
+[node name="ChangeTheme" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 1 )
+config/pitch_random = 0.0
 
 

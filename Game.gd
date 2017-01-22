@@ -86,11 +86,13 @@ func increase_score(player, points):
 	var leader_change = new_max_score > previous_max_score
 	
 	if leader_change && new_max_score >= (victory_condition / 2) && previous_max_score < (victory_condition / 2):
-		get_node("MediumTheme").play()
 		get_node("CoolTheme").stop()
+		get_node("ChangeTheme").play('BUT')
+		get_node("MediumTheme").play()
 	elif leader_change && new_max_score == victory_condition - 10:
-		get_node("MediumTheme").stop()
 		get_node("FinalTheme").play()
+		get_node("ChangeTheme").play('BUT')
+		get_node("MediumTheme").stop()
 	
 	hud.set_score(player, scores[player])
 
