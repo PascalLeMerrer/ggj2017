@@ -1,27 +1,33 @@
 extends Node
 
 const WaveBall = preload("res://waveball/WaveBall.tscn")
+const COOLDOWN_IN_SEC = 10
 
 var waveball_count = 0
 
 var game_root
 
-var pressed = [ false, false ]
+var cooldown = [0, 0]
 
 func _ready():
 	game_root = get_node('/root/Game')
 	set_process(true)
 	
 func _process(delta):
+	for i in range(cooldown.size()):
+		if cooldown[i] > 0:
+			cooldown[i] = cooldown[i] - delta
+			# TODO display status
 	process_paddle(0, "LeftPaddle")		
-	process_paddle(1, "RightPaddle")		
+	process_paddle(1, "RightPaddle")
+
 	
 func process_paddle(paddle_id, paddle_name):
 	var power_pressed = Input.is_action_pressed('power_' + str(paddle_id))
-	if power_pressed and !pressed[paddle_id]:
+	if power_pressed and cooldown[paddle_id] <= 0:
 		var paddle = game_root.get_node(paddle_name + "/KinematicBody2D")
 		create_waveball(paddle)
-	pressed[paddle_id] = power_pressed
+		cooldown[paddle_id] = COOLDOWN_IN_SEC
 
 func create_waveball(paddle):
 		
