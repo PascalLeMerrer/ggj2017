@@ -17,7 +17,7 @@ func _ready():
 	get_node("Continue").hide()
 
 func victory(player):
-	winner_text.set_text("Player " + player + " wins")
+	winner_text.set_text(player.capitalize() + " player wins")
 	winner_text.show()
 	get_node("Continue").show()
 
