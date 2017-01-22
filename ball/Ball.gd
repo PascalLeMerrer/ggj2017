@@ -49,8 +49,8 @@ func _fixed_process(delta):
 	
 func _on_RigidBody2D_body_enter( body ):
 	if(body extends StaticBody2D):
-		process_collision_with_goal(body, left_goal)
-		process_collision_with_goal(body, right_goal)
+		if !process_collision_with_goal(body, left_goal) and !process_collision_with_goal(body, right_goal):
+			process_collision_with_border(body)
 	elif (body extends KinematicBody2D):
 		last_paddle_hit = body.get_parent().get_name()
 		get_node("Sprite").set_modulate(body.current_color)
@@ -59,3 +59,9 @@ func process_collision_with_goal(collider, goal):
 	if (collider == goal):
 		is_out = true
 		game_root.on_goal_hit(self, goal.position)
+		return true
+	return false
+	
+func process_collision_with_border(collider):
+	# TODO
+	# collider.get_color()

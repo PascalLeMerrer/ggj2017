@@ -1,5 +1,5 @@
 const MIDDLE_Y = 450
-const victory_condition = 200
+const victory_condition = 10
 
 var ball_factory = preload("ball/BallFactory.gd").new()
 
@@ -71,6 +71,8 @@ func finish_game(winner):
 		ball_factory.destroy_all_balls()
 		hud.victory(winner)
 		game_over = true
+		get_node("MainTheme").stop()
+		get_node("VictoryTheme").play()
 		
 func increase_score(player, points):
 	scores[player] += points
@@ -84,6 +86,9 @@ func init_goals():
 	get_node("RightGoal/StaticBody2D").position = 'right'
 
 func reset_game():
+	get_node("VictoryTheme").stop()
+	get_node("MainTheme").play()
+	
 	left_paddle.go_to_origin()
 	right_paddle.go_to_origin()
 	ball_factory.destroy_all_balls()

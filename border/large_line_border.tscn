@@ -3,9 +3,16 @@
 [ext_resource path="res://border/large_line_border.gd" type="Script" id=1]
 [ext_resource path="res://border/line_border.tscn" type="PackedScene" id=2]
 
-[node name="StaticBody2D" type="Node2D"]
+[node name="StaticBody2D" type="StaticBody2D"]
 
 transform/pos = Vector2( 36.6115, 33.8995 )
+input/pickable = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
 script/script = ExtResource( 1 )
 
 [node name="Left" parent="." instance=ExtResource( 2 )]
