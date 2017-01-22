@@ -11,7 +11,7 @@ const MIN_SIZE = 0
 const INITIAL_SIZE = 2
 const MAX_SIZE = 4
 const ACCELERATION = 2
-const MAX_SPEED = 5000
+const MAX_SPEED = 3000
 
 var game_root
 var left_goal
