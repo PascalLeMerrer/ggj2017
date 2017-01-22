@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+var ShockWave = preload("res://shockwave/shockwave.tscn")
+
 const IDLE_SPEED = 2
 const FRAMES_BETWEEN_SPAWN = 100
 const LINEAR_DAMPING = 0.99
@@ -9,6 +11,7 @@ const MIN_SIZE = 0
 const INITIAL_SIZE = 2
 const MAX_SIZE = 4
 const ACCELERATION = 2
+const MAX_SPEED = 5000
 
 var game_root
 var left_goal
@@ -22,6 +25,8 @@ var is_out = false
 var last_paddle_hit
 var color
 var current_size = INITIAL_SIZE
+
+var shockwave
 
 func _ready():
 	add_to_group('balls')
@@ -60,6 +65,8 @@ func spawn_new_ball():
 		game_root.spawn_new_ball('left')
 	
 func _on_RigidBody2D_body_enter( body ):
+	var explosion_just_created = false
+	
 	if body.is_in_group('borders'):
 		process_collision_with_border(body)
 		
@@ -69,8 +76,21 @@ func _on_RigidBody2D_body_enter( body ):
 			
 	elif body.is_in_group('paddles'):
 		process_collision_with_paddle(body)
-
 		
+		randomize()
+		if randi() % 5 == 0 and shockwave == null:
+			print('load shockwave')
+			shockwave = ShockWave.instance()
+			explosion_just_created = true
+	
+	if !explosion_just_created and !body.is_in_group('goals') and shockwave != null:
+		print('explode')
+		var game = get_node("/root/Game")
+		game.add_child(shockwave)
+		shockwave.set_pos(get_global_pos())
+		shockwave.explode()
+		shockwave = null
+
 func process_collision_with_goal(collider, goal):
 	if (collider == goal):
 		is_out = true
@@ -100,5 +120,7 @@ func process_collision_with_paddle(paddle):
 	get_node("Sprite").set_modulate(color)
 	
 func accelerate():
-	var linearVelocity = get_linear_velocity()
-	set_linear_velocity(linearVelocity * ACCELERATION)
+	var new_velocity = get_linear_velocity() * ACCELERATION
+	
+	if new_velocity.length() < MAX_SPEED:
+		set_linear_velocity(new_velocity)
