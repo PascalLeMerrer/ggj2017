@@ -26,7 +26,6 @@ func create_ball(paddle, arena):
 		initial_position.x += paddle.x_offset - 50
 	ball.get_node("RigidBody2D").set_pos(initial_position)
 
-	print(ball.get_type())
 	balls.append(ball)
 	
 	return ball

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://paddle/Paddle.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://HUD/Hud.tscn" type="PackedScene" id=5]
 [ext_resource path="res://musics/MainTheme.ogg" type="AudioStream" id=6]
 [ext_resource path="res://musics/Victory.ogg" type="AudioStream" id=7]
+[ext_resource path="res://waveball/WaveballFactory.tscn" type="PackedScene" id=8]
 
 [node name="Game" type="Node2D"]
 
@@ -49,5 +50,7 @@ stream/autoplay = false
 stream/paused = false
 stream/loop_restart_time = 0.0
 stream/buffering_ms = 500
+
+[node name="WaveballFactory" parent="." instance=ExtResource( 8 )]
 
 
