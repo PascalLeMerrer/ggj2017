@@ -11,6 +11,8 @@ var game_over = false
 var scores = [0, 0]
 var hud
 
+var timers = []
+
 func _ready():
 	
 	left_paddle = create_paddle("LeftPaddle/KinematicBody2D", 'left', Vector2(100, MIDDLE_Y))
@@ -52,7 +54,8 @@ func on_goal_hit(ball, goal_position):
 	var spawn_timer = Timer.new()
 	spawn_timer.set_wait_time(2)
 	spawn_timer.connect("timeout", self, "spawn_new_ball_with_timer", [goal_position, spawn_timer])
-
+	timers.append(spawn_timer)
+	
 	if goal_position == 'left':
 		increase_score(1, 10)
 		if has_won(1):
@@ -101,10 +104,10 @@ func reset_game():
 	scores[1] = 0
 	hud.reset_hud()
 	
-	for child in self.get_children():
-		if child extends Timer:
-			child.stop()
-			child.queue_free()
+	for timer in timers:
+		timer.stop()
+		timer.queue_free()
+	timers.clear()
         
 func spawn_new_ball(position):
 	
@@ -115,7 +118,5 @@ func spawn_new_ball(position):
 
 func spawn_new_ball_with_timer(position, timer):
 	if !game_over:
-		print('print via timer')
 		spawn_new_ball(position)
-	
 	timer.queue_free()
