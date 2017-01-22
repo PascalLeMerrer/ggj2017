@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+var ShockWave = preload("res://shockwave/shockwave.tscn")
+
 const IDLE_SPEED = 2
 const FRAMES_BETWEEN_SPAWN = 100
 const LINEAR_DAMPING = 0.99
@@ -21,6 +23,8 @@ var is_out = false
 var last_paddle_hit
 var color
 var current_size = INITIAL_SIZE
+
+var shockwave
 
 func _ready():
 	add_to_group('balls')
@@ -59,6 +63,8 @@ func spawn_new_ball():
 		game_root.spawn_new_ball('left')
 	
 func _on_RigidBody2D_body_enter( body ):
+	var explosion_just_created = false
+	
 	if body.is_in_group('borders'):
 		process_collision_with_border(body)
 		
@@ -70,8 +76,21 @@ func _on_RigidBody2D_body_enter( body ):
 		last_paddle_hit = body.get_parent().get_name()
 		color = body.current_color
 		get_node("Sprite").set_modulate(color)
-
 		
+		randomize()
+		if randi() % 5 == 0 and shockwave == null:
+			print('load shockwave')
+			shockwave = ShockWave.instance()
+			explosion_just_created = true
+	
+	if !explosion_just_created and !body.is_in_group('goals') and shockwave != null:
+		print('explode')
+		var game = get_node("/root/Game")
+		game.add_child(shockwave)
+		shockwave.set_pos(get_global_pos())
+		shockwave.explode()
+		shockwave = null
+
 func process_collision_with_goal(collider, goal):
 	if (collider == goal):
 		is_out = true
