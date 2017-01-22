@@ -67,9 +67,7 @@ func _on_RigidBody2D_body_enter( body ):
 		process_collision_with_goal(body, right_goal)
 			
 	elif body.is_in_group('paddles'):
-		last_paddle_hit = body.get_parent().get_name()
-		color = body.current_color
-		get_node("Sprite").set_modulate(color)
+		process_collision_with_paddle(body)
 
 		
 func process_collision_with_goal(collider, goal):
@@ -92,4 +90,9 @@ func process_collision_with_border(border):
 func change_scale(ratio):
 	get_node("Sprite").scale(ratio)
 	get_node("CollisionShape2D").scale(ratio)	
+
 	
+func process_collision_with_paddle(paddle):
+	last_paddle_hit = paddle.get_parent().get_name()
+	color = paddle.current_color
+	get_node("Sprite").set_modulate(color)
