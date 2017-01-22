@@ -75,16 +75,20 @@ func finish_game(winner):
 		ball_factory.destroy_all_balls()
 		hud.victory(winner)
 		game_over = true
-		get_node("MainTheme").stop()
+		get_node("FinalTheme").stop()
 		get_node("VictoryTheme").play()
 		
 func increase_score(player, points):
+	var previous_max_score = max(scores[0], scores[1])
 	scores[player] += points
+	var new_max_score = max(scores[0], scores[1])
 	
-	if points >= (victory_condition / 2):
+	var leader_change = new_max_score > previous_max_score
+	
+	if leader_change && new_max_score >= (victory_condition / 2) && previous_max_score < (victory_condition / 2):
 		get_node("MediumTheme").play()
 		get_node("CoolTheme").stop()
-	elif points == victory_condition - 10:
+	elif leader_change && new_max_score == victory_condition - 10:
 		get_node("MediumTheme").stop()
 		get_node("FinalTheme").play()
 	
