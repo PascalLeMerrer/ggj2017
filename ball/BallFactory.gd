@@ -26,6 +26,7 @@ func create_ball(paddle, arena):
 		initial_position.x += paddle.x_offset - 50
 	ball.get_node("RigidBody2D").set_pos(initial_position)
 
+	print(ball.get_type())
 	balls.append(ball)
 	
 	return ball
@@ -36,5 +37,6 @@ func destroy_ball(ball):
 	
 func destroy_all_balls():
 	for ball in balls:
-		ball.get_parent().queue_free()
+		print(ball, ball.get_type())
+		ball.queue_free()
 	balls.clear()
