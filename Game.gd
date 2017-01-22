@@ -42,7 +42,8 @@ func create_paddle(node_path, position, origin):
 	return paddle
 
 func init_scores():
-	hud.set_score(1, 000)
+	hud.set_score(0, 0)
+	hud.set_score(1, 0)	
 	
 func on_goal_hit(ball, goal_position):
 
