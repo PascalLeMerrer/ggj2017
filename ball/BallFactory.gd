@@ -32,11 +32,14 @@ func create_ball(paddle, arena):
 	return ball
 	
 func destroy_ball(ball):
-	balls.erase(ball.get_parent())
-	ball.get_parent().queue_free()
+	if ball.is_in_group('balls'):
+		balls.erase(ball.get_parent())
+		ball.get_parent().queue_free()
+	else:
+		balls.erase(ball)
+		ball.queue_free()
 	
 func destroy_all_balls():
 	for ball in balls:
-		print(ball, ball.get_type())
 		ball.queue_free()
 	balls.clear()
