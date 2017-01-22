@@ -1,5 +1,5 @@
 const MIDDLE_Y = 450
-const victory_condition = 30
+const victory_condition = 100
 
 var ball_factory = preload("ball/BallFactory.gd").new()
 
@@ -80,6 +80,14 @@ func finish_game(winner):
 		
 func increase_score(player, points):
 	scores[player] += points
+	
+	if points >= (victory_condition / 2):
+		get_node("MediumTheme").play()
+		get_node("CoolTheme").stop()
+	elif points == victory_condition - 10:
+		get_node("MediumTheme").stop()
+		get_node("FinalTheme").play()
+	
 	hud.set_score(player, scores[player])
 
 func has_won(player):
@@ -91,7 +99,9 @@ func init_goals():
 
 func reset_game():
 	get_node("VictoryTheme").stop()
-	get_node("MainTheme").play()
+	get_node("MediumTheme").stop()
+	get_node("FinalTheme").stop()
+	get_node("CoolTheme").play()
 	
 	left_paddle.go_to_origin()
 	right_paddle.go_to_origin()

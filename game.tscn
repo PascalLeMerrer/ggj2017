@@ -1,13 +1,15 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=11 format=1]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://paddle/Paddle.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Goal/Goal.tscn" type="PackedScene" id=3]
 [ext_resource path="res://arena/rect_arena.tscn" type="PackedScene" id=4]
 [ext_resource path="res://HUD/Hud.tscn" type="PackedScene" id=5]
-[ext_resource path="res://musics/MainTheme.ogg" type="AudioStream" id=6]
-[ext_resource path="res://musics/Victory.ogg" type="AudioStream" id=7]
-[ext_resource path="res://waveball/WaveballFactory.tscn" type="PackedScene" id=8]
+[ext_resource path="res://musics/Air_Hockey_Trkl.ogg" type="AudioStream" id=6]
+[ext_resource path="res://musics/Air_Hockey_Medium.ogg" type="AudioStream" id=7]
+[ext_resource path="res://musics/Air_Hockey_Hard.ogg" type="AudioStream" id=8]
+[ext_resource path="res://musics/Victory.ogg" type="AudioStream" id=9]
+[ext_resource path="res://waveball/WaveballFactory.tscn" type="PackedScene" id=10]
 
 [node name="Game" type="Node2D"]
 
@@ -29,7 +31,7 @@ transform/pos = Vector2( 1618.16, 434.102 )
 
 [node name="Hud" parent="." instance=ExtResource( 5 )]
 
-[node name="MainTheme" type="StreamPlayer" parent="."]
+[node name="CoolTheme" type="StreamPlayer" parent="."]
 
 stream/stream = ExtResource( 6 )
 stream/play = false
@@ -40,9 +42,31 @@ stream/paused = false
 stream/loop_restart_time = 0.0
 stream/buffering_ms = 500
 
-[node name="VictoryTheme" type="StreamPlayer" parent="."]
+[node name="MediumTheme" type="StreamPlayer" parent="."]
 
 stream/stream = ExtResource( 7 )
+stream/play = false
+stream/loop = true
+stream/volume_db = 0.0
+stream/autoplay = false
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
+
+[node name="FinalTheme" type="StreamPlayer" parent="."]
+
+stream/stream = ExtResource( 8 )
+stream/play = false
+stream/loop = true
+stream/volume_db = 0.0
+stream/autoplay = false
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
+
+[node name="VictoryTheme" type="StreamPlayer" parent="."]
+
+stream/stream = ExtResource( 9 )
 stream/play = false
 stream/loop = false
 stream/volume_db = 0.0
@@ -51,6 +75,6 @@ stream/paused = false
 stream/loop_restart_time = 0.0
 stream/buffering_ms = 500
 
-[node name="WaveballFactory" parent="." instance=ExtResource( 8 )]
+[node name="WaveballFactory" parent="." instance=ExtResource( 10 )]
 
 
