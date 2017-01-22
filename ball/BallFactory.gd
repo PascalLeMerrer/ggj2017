@@ -19,7 +19,7 @@ func create_ball(paddle, arena):
 	arena.add_child(ball)
 	ball.set_owner(arena)
 	
-	var initial_position = paddle.get_pos()
+	var initial_position = paddle.origin_pos
 	if(paddle.x_offset > 0):	
 		initial_position.x += paddle.x_offset + 50
 	else:
