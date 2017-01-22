@@ -5,7 +5,6 @@
 [node name="StaticBody2D" type="Node2D"]
 
 transform/pos = Vector2( 36.6115, 33.8995 )
-transform/scale = Vector2( 1, 1 )
 
 [node name="Left" parent="." instance=ExtResource( 1 )]
 
@@ -14,7 +13,7 @@ transform/rot = -90.0
 
 [node name="FullRight" parent="." instance=ExtResource( 1 )]
 
-transform/pos = Vector2( 302.843, 17.3621 )
+transform/pos = Vector2( 245.843, 17.3621 )
 transform/rot = -90.0
 
 [node name="Right" parent="." instance=ExtResource( 1 )]
@@ -24,7 +23,7 @@ transform/rot = -90.0
 
 [node name="FullLeft" parent="." instance=ExtResource( 1 )]
 
-transform/pos = Vector2( -176.685, 17.1977 )
+transform/pos = Vector2( -166.685, 17.1977 )
 transform/rot = -90.0
 
 

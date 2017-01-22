@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=3 format=1]
 
 [ext_resource path="res://border/quarter_border.tscn" type="PackedScene" id=1]
+[ext_resource path="res://border/large_line_border.tscn" type="PackedScene" id=2]
 
 [node name="Node2D" type="Node2D"]
 
@@ -22,5 +23,14 @@ transform/scale = Vector2( -1, -1 )
 
 transform/pos = Vector2( 1404.98, 0.195007 )
 transform/scale = Vector2( -1, 1 )
+
+[node name="TopLargeBorder" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 680.59, 17.8679 )
+
+[node name="BottomLargeBorder" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 679.893, 882.198 )
+transform/scale = Vector2( 1, -1 )
 
 
