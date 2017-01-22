@@ -1,5 +1,5 @@
 const MIDDLE_Y = 450
-const victory_condition = 10
+const victory_condition = 30
 
 var ball_factory = preload("ball/BallFactory.gd").new()
 
