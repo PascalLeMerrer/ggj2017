@@ -11,6 +11,7 @@ const MIN_SIZE = 0
 const INITIAL_SIZE = 2
 const MAX_SIZE = 4
 const ACCELERATION = 2
+const MAX_SPEED = 5000
 
 var game_root
 var left_goal
@@ -119,5 +120,7 @@ func process_collision_with_paddle(paddle):
 	get_node("Sprite").set_modulate(color)
 	
 func accelerate():
-	var linearVelocity = get_linear_velocity()
-	set_linear_velocity(linearVelocity * ACCELERATION)
+	var new_velocity = get_linear_velocity() * ACCELERATION
+	
+	if new_velocity.length() < MAX_SPEED:
+		set_linear_velocity(new_velocity)
