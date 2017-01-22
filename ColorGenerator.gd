@@ -15,7 +15,14 @@ var gamepad_status = {
 func get_random_color():
 	randomize()
 	return colors[randi() % 3]
-	
+
+func get_new_random_color(current_color):
+	randomize()
+	var new_color = colors[randi() % 3]
+	while(new_color == current_color):
+		new_color = colors[randi() % 3]
+	return new_color
+
 func get_next_color(current_color):
 	var current_index = colors.find(current_color)
 	var next_index = (current_index + 1) % colors.size()

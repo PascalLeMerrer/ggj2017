@@ -24,7 +24,6 @@ bounce = 0.0
 
 [node name="Sprite" type="Sprite" parent="StaticBody2D"]
 
-transform/pos = Vector2( 0, -0.418694 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
