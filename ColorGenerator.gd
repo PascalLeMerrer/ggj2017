@@ -1,8 +1,9 @@
 const colors = [
-	Color(.63, .92, .39),
-	Color(.62, .35, .78),
-	Color(.929, .388, .553),
-	Color(1, 1, .42)
+	Color("54E7FE"),
+	Color("8A65B7"),
+	Color("FF353D"),
+	Color("FF8A27"),
+	Color("FFFF00")
 ]
 
 var gamepad_status = {
