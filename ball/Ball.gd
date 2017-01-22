@@ -63,5 +63,8 @@ func process_collision_with_goal(collider, goal):
 	return false
 	
 func process_collision_with_border(collider):
-	# TODO
-	# collider.get_color()
+	# var wall_color = collider.get_color()
+	# if wall_color == get_node("Sprite"):
+		# TODO
+	# else:
+		# TODO
