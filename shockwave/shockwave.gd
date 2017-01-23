@@ -16,6 +16,7 @@ func _ready():
 
 func explode():
 	exploding = true
+	get_node("SamplePlayer2D").play("Shockwave")
 	get_node("Sprite").show()
 	get_node("Sprite/AnimationPlayer").play("exploding")
 

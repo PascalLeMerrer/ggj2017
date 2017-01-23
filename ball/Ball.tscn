@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://ball/Ball.gd" type="Script" id=1]
 [ext_resource path="res://ball/images/ball.png" type="Texture" id=2]
+[ext_resource path="res://musics/sounds.tres" type="SampleLibrary" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -45,6 +46,18 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
+
+[node name="SamplePlayer2D" type="SamplePlayer2D" parent="RigidBody2D"]
+
+transform/pos = Vector2( 0.37085, -0.869917 )
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = ExtResource( 3 )
+config/pitch_random = 0.0
 
 [connection signal="body_enter" from="RigidBody2D" to="RigidBody2D" method="_on_RigidBody2D_body_enter"]
 

@@ -69,27 +69,31 @@ func _on_RigidBody2D_body_enter( body ):
 	
 	if body.is_in_group('borders'):
 		process_collision_with_border(body)
+		get_node("SamplePlayer2D").play("Bounce")
 		
 	elif body.is_in_group('goals'):
 		process_collision_with_goal(body, left_goal)
 		process_collision_with_goal(body, right_goal)
-			
+		get_node("SamplePlayer2D1").play("Goal")
+		
 	elif body.is_in_group('paddles'):
 		process_collision_with_paddle(body)
 		
 		randomize()
-		if randi() % 5 == 0 and shockwave == null:
+		if randi() % 1 == 0 and shockwave == null:
 			print('load shockwave')
 			shockwave = ShockWave.instance()
 			explosion_just_created = true
 	
 	if !explosion_just_created and !body.is_in_group('goals') and shockwave != null:
-		print('explode')
 		var game = get_node("/root/Game")
 		game.add_child(shockwave)
 		shockwave.set_pos(get_global_pos())
 		shockwave.explode()
 		shockwave = null
+		
+		Input.start_joy_vibration(0, 1, 1, 1.2)
+		Input.start_joy_vibration(1, 1, 1, 1.2)
 
 func process_collision_with_goal(collider, goal):
 	if (collider == goal):
