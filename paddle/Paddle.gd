@@ -10,6 +10,7 @@ const LEFT = 'left'
 const RIGHT = 'right'
 const RADIUS = 36
 
+var direction
 var origin_pos
 var pad_number
 var pad_position # should be 'left' or 'right'
@@ -39,6 +40,8 @@ func go_to_origin():
 	set_pos(origin_pos)
 		
 func _fixed_process(delta):
+	
+	process_collisions()
 	set_speed(delta)
 	prevent_exiting_arena()
 	vibrate()
@@ -47,16 +50,25 @@ func _fixed_process(delta):
 		current_color = new_color
 		get_node("Sprite").set_modulate(new_color)
 	
-func set_speed(delta):
+func process_collisions():
+	if is_colliding():
+		var collider = get_collider()
+		# collider may be null if it is a ball which entered the goal just after the collision
+		if collider != null and collider.is_in_group("balls"):
+			collider.process_collision_with_paddle(self)
+			var impulse =  direction * 100
+			collider.apply_impulse(get_collision_pos(), impulse)
+	
+func set_speed(delta):	
 	var x_axis_value = Input.get_joy_axis(pad_number, 0)
 	var y_axis_value = Input.get_joy_axis(pad_number, 1)
 	
-	var direction = Vector2(x_axis_value, y_axis_value)
+	direction = Vector2(x_axis_value, y_axis_value)
 	
 	var new_pos = get_new_pos(direction, SPEED, delta)
 	
 	if direction.length() > DEADZONE and (new_pos.distance_to(origin_pos) < MAX_DISTANCE):
-		set_pos(new_pos)
+		move_to(new_pos)
 	else:
 		revert_motion()
 
@@ -71,10 +83,11 @@ func prevent_exiting_arena():
 	
 	if(current_position.x < min_x):
 		current_position.x = min_x
-		set_pos(current_position)
+		revert_motion()
 	if(current_position.x > max_x):
 		current_position.x = max_x
-		set_pos(current_position)
+		revert_motion()
+
 	
 func vibrate():
 	if get_pos().distance_to(origin_pos) > (MAX_DISTANCE - 15):
