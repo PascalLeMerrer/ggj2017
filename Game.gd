@@ -15,8 +15,8 @@ var timers = []
 
 func _ready():
 
-	left_paddle = create_paddle("LeftPaddle/KinematicBody2D", 'left', Vector2(100, MIDDLE_Y))
-	right_paddle = create_paddle("RightPaddle/KinematicBody2D", 'right', Vector2(1340, MIDDLE_Y))
+	left_paddle = create_paddle("LeftPaddle", 'left', Vector2(100, MIDDLE_Y))
+	right_paddle = create_paddle("RightPaddle", 'right', Vector2(1340, MIDDLE_Y))
 
 	hud = get_node('Hud')
 	spawn_new_ball('left')

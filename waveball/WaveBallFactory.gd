@@ -25,7 +25,7 @@ func _process(delta):
 func process_paddle(paddle_id, paddle_name):
 	var power_pressed = Input.is_action_pressed('power_' + str(paddle_id))
 	if power_pressed and cooldown[paddle_id] <= 0:
-		var paddle = game_root.get_node(paddle_name + "/KinematicBody2D")
+		var paddle = game_root.get_node(paddle_name)
 		create_waveball(paddle)
 		cooldown[paddle_id] = COOLDOWN_IN_SEC
 
@@ -45,6 +45,4 @@ func create_waveball(paddle):
 		waveball.start(initial_position, Vector2(-1, 1))
 		
 	return waveball
-
-
 
