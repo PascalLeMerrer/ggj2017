@@ -74,7 +74,7 @@ func _on_RigidBody2D_body_enter( body ):
 	elif body.is_in_group('goals'):
 		process_collision_with_goal(body, left_goal)
 		process_collision_with_goal(body, right_goal)
-		get_node("SamplePlayer2D1").play("Goal")
+		get_node("SamplePlayer2D").play("Goal")
 		
 	elif body.is_in_group('paddles'):
 		process_collision_with_paddle(body)
