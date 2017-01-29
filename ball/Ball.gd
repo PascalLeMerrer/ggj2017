@@ -81,7 +81,6 @@ func _on_RigidBody2D_body_enter( body ):
 		
 		randomize()
 		if randi() % 1 == 0 and shockwave == null:
-			print('load shockwave')
 			shockwave = ShockWave.instance()
 			explosion_just_created = true
 	
